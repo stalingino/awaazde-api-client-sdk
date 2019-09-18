@@ -42,7 +42,7 @@ public class ApiClient {
 
 		if (response.getStatusInfo().getStatusCode() != 201) {
 			System.out.println(response.getEntity(String.class));
-			return "Resource Not Created";
+			return "Resource Not Created: " + response.getEntity(String.class);
 		}
 		return response.getEntity(String.class);
 	}
@@ -53,7 +53,7 @@ public class ApiClient {
 				.type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
 		if (response.getStatusInfo().getStatusCode() != 200) {
-			return "Resource Not Found";
+			return "Resource Not Found: " + response.getEntity(String.class);
 		}
 		return response.getEntity(String.class);
 	}
@@ -64,7 +64,7 @@ public class ApiClient {
 				.type(MediaType.APPLICATION_JSON).post(ClientResponse.class, data);
 
 		if (response.getStatusInfo().getStatusCode() != 200) {
-			return "Resource Not Updated";
+			return "Resource Not Updated: " + response.getEntity(String.class);
 		}
 		return response.getEntity(String.class);
 	}
