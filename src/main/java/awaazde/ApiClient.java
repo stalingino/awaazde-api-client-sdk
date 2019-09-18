@@ -41,8 +41,9 @@ public class ApiClient {
 				.type(MediaType.APPLICATION_JSON).post(ClientResponse.class, data);
 
 		if (response.getStatusInfo().getStatusCode() != 201) {
-			System.out.println(response.getEntity(String.class));
-			return "Resource Not Created: " + response.getEntity(String.class);
+			String r = response.getEntity(String.class);
+			System.out.println(r);
+			return "Resource Not Created: " + r;
 		}
 		return response.getEntity(String.class);
 	}
