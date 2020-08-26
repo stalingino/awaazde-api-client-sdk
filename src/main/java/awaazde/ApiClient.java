@@ -39,6 +39,9 @@ public class ApiClient {
 		WebResource webResource = client.resource(url);
 		ClientResponse response = webResource.header("Authorization", "JWT " + token).accept(MediaType.APPLICATION_JSON)
 				.type(MediaType.APPLICATION_JSON).post(ClientResponse.class, data);
+		if (response.getStatusInfo().getStatusCode() == 401) {
+			return "Token Expired. Please log in again.";
+		}
 		if (response.getStatusInfo().getStatusCode() == 403) {
 			return "Token Expired. Please log in again.";
 		}
